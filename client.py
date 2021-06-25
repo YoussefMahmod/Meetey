@@ -25,7 +25,7 @@ def error_message():
     print(meet_link_text.get())
     print(start_date_text.get())
     print(end_date_text.get())
-    if(meet_name_text.get() == '' or meet_link_text.get() == '' or start_date_text.get() == '' or end_date_text == ''):
+    if(meet_name_text.get() == '' or start_date_text.get() == '' or end_date_text == '' or meet_link_text.get() == ''):
         messagebox.showerror('Required Fields', 'Please insert all fields')
         return 1
     return 0
@@ -34,7 +34,12 @@ def error_message():
 def fetch_data():
     data_list.delete(0,END)
     for row in db.fetch():
-        print(row)
+        # row_with_spaces = []
+        # for entity in row:
+        #     row_with_spaces.append(entity)
+        #     row_with_spaces.append('')
+        # print(row_with_spaces)
+        
         data_list.insert(END, row)
 
 
@@ -42,7 +47,7 @@ def add_meet():
     if error_message():
         return
     try:
-        db.insert(meet_name_text.get(),meet_link_text.get(),start_date_text.get(),end_date_text.get())
+        db.insert(meet_name_text.get(),start_date_text.get(),end_date_text.get(), meet_link_text.get())
     except sqlite3.IntegrityError:
         messagebox.showerror('Meeting name exists!','Meeting name should be unique.')
     fetch_data()
@@ -51,7 +56,7 @@ def add_meet():
 def update_data():
     if error_message() == 1:
         return
-    db.update(selected_item[0],meet_name_text.get(), meet_link_text.get(), start_date_text.get(), end_date_text.get())
+    db.update(selected_item[0],meet_name_text.get(), start_date_text.get(), end_date_text.get(), meet_link_text.get())
     fetch_data()
 
 
@@ -64,12 +69,13 @@ def select_item(event):
         # insert selected data into fields
         meet_name_entry.delete(0,END)
         meet_name_entry.insert(END,selected_item[1])
-        meet_link_entry.delete(0,END)
-        meet_link_entry.insert(END,selected_item[2])
         start_date_entry.delete(0,END)
-        start_date_entry.insert(END,selected_item[3])
+        start_date_entry.insert(END,selected_item[2])
         end_date_entry.delete(0,END)
-        end_date_entry.insert(END,selected_item[4])
+        end_date_entry.insert(END,selected_item[3])
+        meet_link_entry.delete(0,END)
+        meet_link_entry.insert(END,selected_item[4])
+        
     except IndexError:
         pass
 
@@ -83,9 +89,9 @@ def delete_data():
 
 def clear_data():
     meet_name_entry.delete(0,END)
-    meet_link_entry.delete(0,END)
     start_date_entry.delete(0,END)
     end_date_entry.delete(0,END)
+    meet_link_entry.delete(0,END)
 
 
 Title = 'Meetey V1.0'
@@ -100,39 +106,38 @@ meet_name_label.configure(bg='#121417',fg='white')
 meet_name_entry = Entry(app, textvariable=meet_name_text)
 meet_name_entry.grid(row=0, column=1)
 
-
-# Meet Link
-meet_link_text = StringVar()
-meet_link_label = Label(app, text='Meet Link', font=('bold',14), pady=20)
-meet_link_label.grid(row=1, column=0, sticky=W)
-meet_link_label.configure(bg='#121417',fg='white')
-meet_link_entry = Entry(app, textvariable=meet_link_text)
-meet_link_entry.grid(row=1, column=1)
-
 # Start date
 start_date_text = StringVar()
 start_date_label = Label(app, text='Start date', font=('bold',14), pady=20)
 start_date_label.configure(bg='#121417',fg='white')
-start_date_label.grid(row=2, column=0, sticky=W)
+start_date_label.grid(row=1, column=0, sticky=W)
 start_date_entry = Entry(app, textvariable=start_date_text)
-start_date_entry.grid(row=2, column=1)
+start_date_entry.grid(row=1, column=1)
 
 # End date
 end_date_text = StringVar()
 end_date_label = Label(app, text='End Date', font=('bold',14), pady=20)
 end_date_label.configure(bg='#121417',fg='white')
-end_date_label.grid(row=3, column=0, sticky=W)
+end_date_label.grid(row=2, column=0, sticky=W)
 end_date_entry = Entry(app, textvariable=end_date_text)
-end_date_entry.grid(row=3, column=1)
+end_date_entry.grid(row=2, column=1)
+
+# Meet Link
+meet_link_text = StringVar()
+meet_link_label = Label(app, text='Meet Link', font=('bold',14), pady=20)
+meet_link_label.grid(row=3, column=0, sticky=W)
+meet_link_label.configure(bg='#121417',fg='white')
+meet_link_entry = Entry(app, textvariable=meet_link_text)
+meet_link_entry.grid(row=3, column=1)
 
 # ListBox
-data_list = Listbox(app,height=10,width=80)
-data_list.grid(row=5, column=0, columnspan=4,rowspan=6, padx=5,pady=10)
-data_list.configure(bg='#232d3b',fg='white',highlightbackground='green',borderwidth=0)
+data_list = Listbox(app,height=10,width=60)
+data_list.grid(row=5, column=0, columnspan=4,rowspan=6, padx=10,pady=10)
+data_list.configure(bg='#232d3b',fg='white',highlightbackground='green',borderwidth=0,font = ('Courier New', 16))
 
 # ScrollBar
-scroll_bar = Scrollbar(app)
-scroll_bar.grid(row=5,column=3)
+scroll_bar = Scrollbar(app,orient=VERTICAL)
+scroll_bar.grid(row=5,column=4)
 scroll_bar.configure(bg='green')
 
 # set scroll to listbox
@@ -171,7 +176,7 @@ e_time_check_btn.configure(width=0,bg='#121417',fg=btn_color,highlightbackground
 
 # App Main
 app.title(Title)
-app.geometry('660x530')
+app.geometry('830x600')
 app.configure(bg='#121417')
 fetch_data()
 
