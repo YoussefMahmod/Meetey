@@ -163,13 +163,13 @@ clear_btn.configure(bg='#121417',fg=btn_color,highlightbackground='green',border
 
 # Check inputs Buttons
 link_check_btn = Button(app,text='Sync Link', width=12, pady=10, command=check_link)
-link_check_btn.grid(row=1,column=2)
+link_check_btn.grid(row=3,column=2)
 link_check_btn.configure(bg='#121417',fg=btn_color,highlightbackground='green',borderwidth=.05)
-s_time_check_btn = Button(app,text='Sync Begin Time', width=12, pady=10, command=check_s_time)
-s_time_check_btn.grid(row=2,column=2)
+s_time_check_btn = Button(app,text='Sync Start Date', width=12, pady=10, command=check_s_time)
+s_time_check_btn.grid(row=1,column=2)
 s_time_check_btn.configure(bg='#121417',fg=btn_color,highlightbackground='green',borderwidth=.05)
-e_time_check_btn = Button(app,text='Sync End Time', width=12, pady=10, command=check_e_time)
-e_time_check_btn.grid(row=3,column=2)
+e_time_check_btn = Button(app,text='Sync End End Date', width=12, pady=10, command=check_e_time)
+e_time_check_btn.grid(row=2,column=2)
 e_time_check_btn.configure(width=0,bg='#121417',fg=btn_color,highlightbackground='green',borderwidth=.05)
 
 
