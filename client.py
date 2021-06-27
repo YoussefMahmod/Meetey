@@ -110,25 +110,25 @@ meet_name_entry.grid(row=0, column=1)
 start_date_text = StringVar()
 start_date_label = Label(app, text='Start date', font=('bold',14), pady=20)
 start_date_label.configure(bg='#121417',fg='white')
-start_date_label.grid(row=1, column=0, sticky=W)
+start_date_label.grid(row=2, column=0, sticky=W)
 start_date_entry = Entry(app, textvariable=start_date_text)
-start_date_entry.grid(row=1, column=1)
+start_date_entry.grid(row=2, column=1)
 
 # End date
 end_date_text = StringVar()
 end_date_label = Label(app, text='End Date', font=('bold',14), pady=20)
 end_date_label.configure(bg='#121417',fg='white')
-end_date_label.grid(row=2, column=0, sticky=W)
+end_date_label.grid(row=3, column=0, sticky=W)
 end_date_entry = Entry(app, textvariable=end_date_text)
-end_date_entry.grid(row=2, column=1)
+end_date_entry.grid(row=3, column=1)
 
 # Meet Link
 meet_link_text = StringVar()
 meet_link_label = Label(app, text='Meet Link', font=('bold',14), pady=20)
-meet_link_label.grid(row=3, column=0, sticky=W)
+meet_link_label.grid(row=1, column=0, sticky=W)
 meet_link_label.configure(bg='#121417',fg='white')
 meet_link_entry = Entry(app, textvariable=meet_link_text)
-meet_link_entry.grid(row=3, column=1)
+meet_link_entry.grid(row=1, column=1)
 
 # ListBox
 data_list = Listbox(app,height=10,width=60)
@@ -163,13 +163,13 @@ clear_btn.configure(bg='#121417',fg=btn_color,highlightbackground='green',border
 
 # Check inputs Buttons
 link_check_btn = Button(app,text='Sync Link', width=12, pady=10, command=check_link)
-link_check_btn.grid(row=3,column=2)
+link_check_btn.grid(row=1,column=2)
 link_check_btn.configure(bg='#121417',fg=btn_color,highlightbackground='green',borderwidth=.05)
 s_time_check_btn = Button(app,text='Sync Start Date', width=12, pady=10, command=check_s_time)
-s_time_check_btn.grid(row=1,column=2)
+s_time_check_btn.grid(row=2,column=2)
 s_time_check_btn.configure(bg='#121417',fg=btn_color,highlightbackground='green',borderwidth=.05)
 e_time_check_btn = Button(app,text='Sync End End Date', width=12, pady=10, command=check_e_time)
-e_time_check_btn.grid(row=2,column=2)
+e_time_check_btn.grid(row=3,column=2)
 e_time_check_btn.configure(width=0,bg='#121417',fg=btn_color,highlightbackground='green',borderwidth=.05)
 
 
