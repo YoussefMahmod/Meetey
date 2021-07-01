@@ -4,20 +4,24 @@ from tkinter import messagebox
 from db import Database
 import webbrowser as wb
 
+import requests
+from bs4 import BeautifulSoup
+
+
 db = Database('meets.db')
 selected_item = 0
 btn_color = 'white'
 
-def check_s_time():
-    pass
+# def check_s_time():
+#     pass
 
 
-def check_e_time():
-    pass
+# def check_e_time():
+#     pass
 
 
-def check_link():
-    pass
+# def check_link():
+#     pass
 
 
 def error_message():
@@ -162,15 +166,15 @@ clear_btn.grid(row=0,column=2)
 clear_btn.configure(bg='#121417',fg=btn_color,highlightbackground='green',borderwidth=.05)
 
 # Check inputs Buttons
-link_check_btn = Button(app,text='Sync Link', width=12, pady=10, command=check_link)
-link_check_btn.grid(row=1,column=2)
-link_check_btn.configure(bg='#121417',fg=btn_color,highlightbackground='green',borderwidth=.05)
-s_time_check_btn = Button(app,text='Sync Start Date', width=12, pady=10, command=check_s_time)
-s_time_check_btn.grid(row=2,column=2)
-s_time_check_btn.configure(bg='#121417',fg=btn_color,highlightbackground='green',borderwidth=.05)
-e_time_check_btn = Button(app,text='Sync End End Date', width=12, pady=10, command=check_e_time)
-e_time_check_btn.grid(row=3,column=2)
-e_time_check_btn.configure(width=0,bg='#121417',fg=btn_color,highlightbackground='green',borderwidth=.05)
+# link_check_btn = Button(app,text='Sync Link', width=12, pady=10, command=check_link)
+# link_check_btn.grid(row=1,column=2)
+# link_check_btn.configure(bg='#121417',fg=btn_color,highlightbackground='green',borderwidth=.05)
+# s_time_check_btn = Button(app,text='Sync Start Date', width=12, pady=10, command=check_s_time)
+# s_time_check_btn.grid(row=2,column=2)
+# s_time_check_btn.configure(bg='#121417',fg=btn_color,highlightbackground='green',borderwidth=.05)
+# e_time_check_btn = Button(app,text='Sync End End Date', width=12, pady=10, command=check_e_time)
+# e_time_check_btn.grid(row=3,column=2)
+# e_time_check_btn.configure(width=0,bg='#121417',fg=btn_color,highlightbackground='green',borderwidth=.05)
 
 
 
@@ -179,6 +183,9 @@ app.title(Title)
 app.geometry('830x600')
 app.configure(bg='#121417')
 fetch_data()
+
+
+
 
 # Start program
 app.mainloop()
