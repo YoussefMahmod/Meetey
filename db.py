@@ -12,7 +12,12 @@ class Database:
         self.cur.execute("SELECT * FROM meets")
         rows = self.cur.fetchall()
         return rows
-    
+
+    def fetch_start_date(self,start):
+        self.cur.execute("SELECT meet_link, s_date, e_date FROM meets WHERE s_date = ?",(start,))
+        rows = self.cur.fetchall()
+        return rows
+
     def insert(self,meet_name,s_date,e_date, meet_link):
         self.cur.execute("INSERT INTO meets VALUES(NULL,?,?,?,?)",(meet_name,s_date,e_date, meet_link))
         self.connection.commit()
